@@ -50,3 +50,41 @@ def text_to_id(text, num=True):
         text = re.sub('[^a-zA-Z_-]', '', text)
         text = text[:-1]
     return text
+
+def insert_cnpj(num):
+    
+    """
+    Cast a string of digits to the formatted 00.000.000/0001-00 CNPJ standard.
+    """
+    cnpj = num[:2]+'.'+num[2:5]+'.'+num[5:8]+r'/'+num[8:12]+'-'+num[13:]
+    return cnpj
+
+def make_cnpj(series):
+    
+    """
+    Force the CNPJ 00.000.000/0001-00 standard on a pandas series object.
+    """
+    series = series.apply(lambda x: str(x))
+    series = series.apply(lambda x: x.zfill(14))
+    series = series.apply(lambda x: insert_cnpj(x))
+    
+    return series
+
+def insert_cpf(a):
+    
+    """
+    Cast a string of digits to the formatted 000.000.000-00 CPF standard.
+    """
+    cpf = a[:3]+'.'+a[3:6]+'.'+a[6:9]+'-'+a[9:]
+    return cpf
+
+def make_cpf(series):
+    
+    """
+    Force the CPF 000.000.000-00 standard on a pandas series object.
+    """
+    series = series.apply(lambda x: str(x))
+    series = series.apply(lambda x: x.zfill(11))
+    series = series.apply(lambda x: insert_cpf(x))
+    
+    return series
