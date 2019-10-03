@@ -88,3 +88,21 @@ def make_cpf(series):
     series = series.apply(lambda x: insert_cpf(x))
     
     return series
+
+def make_money(value):
+    
+    """
+    Replaces comma with dot in order to treat the values as currency data.
+    """
+    value =str(value)
+    value = re.sub('[,]', '.', value)+'0'
+    value = float(value)
+    return value
+
+def make_valor(series):
+    
+    """
+    Applies make_money on a pandas series object.
+    """
+    series = series.apply(lambda x: make_money(x))
+    return series
