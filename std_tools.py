@@ -56,7 +56,7 @@ def insert_cnpj(num):
     """
     Cast a string of digits to the formatted 00.000.000/0001-00 CNPJ standard.
     """
-    cnpj = num[:2]+'.'+num[2:5]+'.'+num[5:8]+r'/'+num[8:12]+'-'+num[13:]
+    cnpj = num[:2]+'.'+num[2:5]+'.'+num[5:8]+r'/'+num[8:12]+'-'+num[12:]
     return cnpj
 
 def make_cnpj(series):
