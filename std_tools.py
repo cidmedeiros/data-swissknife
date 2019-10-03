@@ -99,7 +99,7 @@ def make_money(value):
     value = float(value)
     return value
 
-def make_valor(series):
+def make_currency(series):
     
     """
     Applies make_money on a pandas series object.
