@@ -98,7 +98,7 @@ def make_money(value):
     Replaces comma with dot in order to treat the values as currency data.
     """
     value =str(value)
-    value = re.sub('[,]', '.', value)+'0'
+    value = re.sub('[,]', '.', value)
     value = float(value)
     return value
 
