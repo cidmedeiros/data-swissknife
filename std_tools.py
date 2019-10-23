@@ -6,9 +6,6 @@ Created on Thu Oct  3 11:23:22 2019
 """
 import re
 import unicodedata
-import datetime as dt
-import pandas as pd
-import numpy as np
 
 def strip_accents(text):
     """
@@ -65,6 +62,9 @@ def make_cnpj(series):
     Force the CNPJ 00.000.000/0001-00 standard on a pandas series object.
     """
     series = series.apply(lambda x: str(x))
+    series = series.apply(lambda x: x.replace('.',''))
+    series = series.apply(lambda x: x.replace('-',''))
+    series = series.apply(lambda x: x.replace('/',''))
     series = series.apply(lambda x: x.zfill(14))
     series = series.apply(lambda x: insert_cnpj(x))
     
@@ -84,6 +84,9 @@ def make_cpf(series):
     Force the CPF 000.000.000-00 standard on a pandas series object.
     """
     series = series.apply(lambda x: str(x))
+    series = series.apply(lambda x: x.replace('.',''))
+    series = series.apply(lambda x: x.replace('-',''))
+    series = series.apply(lambda x: x.replace('/',''))
     series = series.apply(lambda x: x.zfill(11))
     series = series.apply(lambda x: insert_cpf(x))
     
